@@ -1,0 +1,38 @@
+/**
+ * Program M3: Accepts two integers as command line arguments, 
+ * calculates their sum, and prints the result.
+ */
+public class SumTwoNumbers {
+
+    public static void main(String[] args) {
+        
+        // Check if exactly two arguments are provided
+        if (args.length != 2) {
+            System.out.println("Usage: java SumTwoNumbers <Number1> <Number2>");
+            System.out.println("Example: java SumTwoNumbers 10 20");
+            return;
+        }
+
+        int num1;
+        int num2;
+        int sum;
+
+        try {
+            // Convert the first command line argument (a string) to an integer
+            num1 = Integer.parseInt(args[0]);
+            
+            // Convert the second command line argument (a string) to an integer
+            num2 = Integer.parseInt(args[1]);
+
+            // Calculate the sum
+            sum = num1 + num2;
+
+            // Print the result in the expected format
+            System.out.println("The sum of " + num1 + " and " + num2 + " is " + sum);
+
+        } catch (NumberFormatException e) {
+            // Handle case where arguments are not valid integers
+            System.out.println("Error: Both arguments must be valid integers.");
+        }
+    }
+}
