@@ -1,0 +1,24 @@
+public class CommandLineString {
+
+    public static void main(String[] args) {
+        
+        // Step 1: Check if exactly two command line arguments are provided, as mandated.
+        if (args.length != 2) {
+            System.out.println("Error: Exactly two strings must be passed as command line arguments.");
+            System.out.println("Usage: java CommandLineString <String1> <String2>");
+            System.out.println("Example: java CommandLineString Wipro Bangalore");
+            return;
+        }
+
+        // Step 2: Assign the command line arguments to variables for clarity.
+        String firstString = args[0]; // e.g., "Wipro" or "ABC"
+        String secondString = args[1]; // e.g., "Bangalore" or "Mumbai"
+
+        // Step 3: Concatenate the strings in the required format: 
+        // [String1] + " Technologies " + [String2]
+        String output = firstString + " Technologies " + secondString;
+
+        // Step 4: Print the generated output.
+        System.out.println(output);
+    }
+}
