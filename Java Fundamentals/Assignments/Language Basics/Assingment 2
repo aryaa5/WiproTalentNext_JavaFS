@@ -1,0 +1,18 @@
+public class Welcome {
+
+    public static void main(String[] args) {
+        
+        // Check if one argument is provided
+        if (args.length != 1) {
+            System.out.println("Usage: java Welcome <Name>");
+            System.out.println("Example: java Welcome John");
+            return;
+        }
+
+        // The first command line argument is the name
+        String name = args[0]; 
+
+        // Print the welcome message in the expected format
+        System.out.println("Welcome " + name);
+    }
+}
