@@ -1,1 +1,178 @@
+import java.util.HashMap;
+import java.util.Map;
 
+/**
+ * Project:1 - Employee Management System
+ * Given a table of employee data, develop a small Java application 
+ * which accepts employee id from the command prompt and displays the 
+ * employee's details and calculated salary.
+ */
+public class Project1 {
+
+    /**
+     * Inner class representing an Employee.
+     */
+    private static class Employee {
+        int empNo;
+        String empName;
+        String joinDate; // Storing as String as it's not used for calculations
+        String designationCode;
+        String department;
+        int basic;
+        int hra;
+        int it;
+
+        /**
+         * Constructor for Employee.
+         */
+        public Employee(int empNo, String empName, String joinDate, String designationCode, String department, int basic, int hra, int it) {
+            this.empNo = empNo;
+            this.empName = empName;
+            this.joinDate = joinDate;
+            this.designationCode = designationCode;
+            this.department = department;
+            this.basic = basic;
+            this.hra = hra;
+            this.it = it;
+        }
+
+        // Getter for designation code
+        public String getDesignationCode() {
+            return designationCode;
+        }
+
+        // Other necessary getters
+        public int getEmpNo() { return empNo; }
+        public String getEmpName() { return empName; }
+        public String getDepartment() { return department; }
+        public int getBasic() { return basic; }
+        public int getHra() { return hra; }
+        public int getIt() { return it; }
+    }
+
+    // Map to store Designation Code to DA (Dearness Allowance) for quick lookup
+    private static final Map<String, Integer> daMap = new HashMap<>();
+
+    static {
+        // Initialize the DA (Dearness Allowance) details
+        daMap.put("e", 20000); // Engineer
+        daMap.put("c", 32000); // Consultant
+        daMap.put("k", 12000); // Clerk
+        daMap.put("r", 15000); // Receptionist
+        daMap.put("m", 40000); // Manager
+    }
+
+    // Array to hold the employee records
+    private static final Employee[] employees = {
+        new Employee(1001, "Ashish", "01/04/2009", "e", "R&D", 20000, 8000, 3000),
+        new Employee(1002, "Sushma", "23/08/2012", "c", "PM", 30000, 12000, 9000),
+        new Employee(1003, "Rahul", "12/11/2008", "k", "Acct", 10000, 8000, 1000),
+        new Employee(1004, "Chahat", "29/01/2013", "r", "Front Desk", 12000, 6000, 2000),
+        new Employee(1005, "Ranjan", "16/07/2005", "m", "Engg", 50000, 20000, 20000),
+        new Employee(1006, "Suman", "1/1/2000", "e", "Manufacturing", 23000, 9000, 4400),
+        new Employee(1007, "Tanmay", "12/06/2006", "c", "PM", 29000, 12000, 10000)
+    };
+
+    /**
+     * Calculates the Dearness Allowance (DA) for an employee using a switch-case.
+     * Note 2: Use switch-case to print Designation and to find the value of DA 
+     * for a particular employee.
+     * * @param designationCode The one-letter code for the designation.
+     * @return The DA amount.
+     */
+    private static int calculateDA(String designationCode) {
+        // Using switch expression (Java 14+) for conciseness, or traditional switch-case for wider compatibility
+        // For compatibility and explicit instruction, using a traditional switch-case
+        
+        switch (designationCode) {
+            case "e":
+                System.out.print("Engineer"); // Print Designation
+                return 20000;
+            case "c":
+                System.out.print("Consultant"); // Print Designation
+                return 32000;
+            case "k":
+                System.out.print("Clerk"); // Print Designation
+                return 12000;
+            case "r":
+                System.out.print("Receptionist"); // Print Designation
+                return 15000;
+            case "m":
+                System.out.print("Manager"); // Print Designation
+                return 40000;
+            default:
+                System.out.print("Unknown");
+                return 0; // Should not happen with the given data
+        }
+    }
+
+    /**
+     * Main method to execute the program.
+     * * @param args Command-line arguments (should contain the EmpID).
+     */
+    public static void main(String[] args) {
+        // Check if an employee ID was provided
+        if (args.length < 1) {
+            System.out.println("Error: Please provide an Employee ID as a command-line argument.");
+            System.out.println("Example: java Project1 1003");
+            return;
+        }
+
+        int targetEmpId;
+        try {
+            targetEmpId = Integer.parseInt(args[0]);
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Invalid Employee ID provided. Please enter a number.");
+            return;
+        }
+
+        Employee foundEmployee = null;
+        for (Employee emp : employees) {
+            if (emp.getEmpNo() == targetEmpId) {
+                foundEmployee = emp;
+                break;
+            }
+        }
+
+        if (foundEmployee == null) {
+            // Expected Output format for non-existent employee
+            System.out.println("There is no employee with empid : " + targetEmpId);
+            return;
+        }
+
+        // Found employee, proceed to calculate and display details
+
+        // Get DA and print Designation using the required switch-case method
+        String designationCode = foundEmployee.getDesignationCode();
+        int da = calculateDA(designationCode);
+        String designationName = designationCodeToName(designationCode); // Re-map to avoid printing extra for the final output format
+
+        // Note 1: Salary should be calculated as (Basic + HRA + DA - IT).
+        long salary = (long)foundEmployee.getBasic() + foundEmployee.getHra() + da - foundEmployee.getIt();
+
+        // Expected Output format:
+        // Emp No. Emp Name    Department    Designation    Salary
+        // 1003    Rahul       Acct          Clerk          29000
+        System.out.println("\nEmp No.\tEmp Name\tDepartment\tDesignation\tSalary");
+        System.out.printf("%d\t%s\t\t%s\t\t%s\t\t%d\n",
+                foundEmployee.getEmpNo(),
+                foundEmployee.getEmpName(),
+                foundEmployee.getDepartment(),
+                designationName,
+                salary);
+    }
+    
+    /**
+     * Helper to get the designation name without printing, for the final output format.
+     */
+    private static String designationCodeToName(String designationCode) {
+        return switch (designationCode) {
+            case "e" -> "Engineer";
+            case "c" -> "Consultant";
+            case "k" -> "Clerk";
+            case "r" -> "Receptionist";
+            case "m" -> "Manager";
+            default -> "Unknown";
+        };
+    }
+}
