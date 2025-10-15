@@ -1,0 +1,38 @@
+/**
+ * Program M1 (B): Checks if two non-negative int values have the same last digit.
+ */
+public class LastDigitCheck {
+
+    /**
+     * Checks if the last digit of num1 is the same as the last digit of num2.
+     * @param num1 The first non-negative integer.
+     * @param num2 The second non-negative integer.
+     * @return true if the last digits are the same, false otherwise.
+     */
+    public static boolean lastDigit(int num1, int num2) {
+        
+        // Ensure inputs are non-negative as specified in the problem
+        if (num1 < 0 || num2 < 0) {
+            System.out.println("Warning: Inputs must be non-negative.");
+            return false; // Or handle as required
+        }
+        
+        // Calculate the last digit using the modulo operator (%)
+        int lastDigit1 = num1 % 10;
+        int lastDigit2 = num2 % 10;
+
+        // Use an if statement to compare the last digits
+        if (lastDigit1 == lastDigit2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static void main(String[] args) {
+        // Test Cases (based on the example):
+        System.out.println("lastDigit(7, 17) -> " + lastDigit(7, 17));   // Expected: true
+        System.out.println("lastDigit(6, 17) -> " + lastDigit(6, 17));   // Expected: false
+        System.out.println("lastDigit(3, 113) -> " + lastDigit(3, 113)); // Expected: true
+    }
+}
