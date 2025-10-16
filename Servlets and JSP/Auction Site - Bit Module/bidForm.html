@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Auction Bid</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #f7f3e8; /* Light beige/yellow background */
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 1.5em;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"] {
+            width: calc(100% - 12px);
+            padding: 5px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        .checkbox-group {
+            margin: 15px 0;
+            font-weight: normal;
+        }
+        .submit-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .submit-button input[type="submit"] {
+            padding: 8px 15px;
+            background-color: #4CAF50; /* Green for the button */
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .submit-button input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        /* Style for required fields for the "Required Data Missing" look */
+        .error-message {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <c:if test="${not empty errorMessage}">
+             <div class="error-message">Required Data Missing! Enter and Resubmit.</div>
+        </c:if>
+
+        <h1>Welcome to AP Auctions. Please Enter Bid.</h1>
+        <form action="BidController" method="post">
+            
+            <label for="itemId">Item ID:</label>
+            <input type="text" id="itemId" name="itemId" value="${bidData.itemId}" required>
+
+            <label for="itemName">Item Name:</label>
+            <input type="text" id="itemName" name="itemName" value="${bidData.itemName}" required>
+
+            <label for="yourName">Your Name:</label>
+            <input type="text" id="yourName" name="yourName" value="${bidData.yourName}" required>
+
+            <label for="emailAddress">Your Email Address:</label>
+            <input type="email" id="emailAddress" name="emailAddress" value="${bidData.emailAddress}" required>
+
+            <label for="amountBid">Amount Bid:</label>
+            <input type="number" id="amountBid" name="amountBid" step="0.01" value="${bidData.amountBid}" required>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="autoIncrement" name="autoIncrement" value="true" ${bidData.autoIncrement ? 'checked' : ''}>
+                <label for="autoIncrement" style="display:inline; font-weight:normal;">Auto-increment bid to match other bidders?</label>
+            </div>
+            
+            <div class="submit-button">
+                <input type="submit" value="Submit Bid">
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
