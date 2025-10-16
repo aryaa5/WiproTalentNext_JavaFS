@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified">
+
+    <xs:simpleType name="SIMSizeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Normal"/>
+            <xs:enumeration value="Micro"/>
+            <xs:enumeration value="micro"/> <xs:enumeration value="Nano"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="StoreNameType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="store1"/>
+            <xs:enumeration value="store2"/>
+            <xs:enumeration value="store3"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="YesNoType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Yes"/>
+            <xs:enumeration value="No"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="MobileSaleType">
+        <xs:sequence>
+            <xs:element name="ModelName" type="xs:string"/>
+            <xs:element name="ModelID" type="xs:string"/>
+            <xs:element name="Brand" type="xs:string"/>
+            <xs:element name="Price" type="xs:integer"/> <xs:element name="Color" type="xs:string"/>
+            <xs:element name="SIMSize" type="SIMSizeType"/>
+            <xs:element name="Memory" type="xs:string"/>
+            <xs:element name="Camera" type="YesNoType"/>
+            <xs:element name="TouchScreen" type="YesNoType"/>
+            <xs:element name="NoSold" type="xs:integer"/> <xs:element name="storeName" type="StoreNameType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="SalesSummary">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="MobileSale" type="MobileSaleType" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
