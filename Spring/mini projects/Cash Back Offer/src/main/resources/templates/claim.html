@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Legion Bank - Claim Offer</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        /* Style matching the provided image (Red background) */
+        .container { background-color: #f99; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 400px; text-align: center; }
+        
+        /* Styling the header block similar to the image */
+        .header-block { background-color: #d33; padding: 15px; margin: -20px -20px 20px -20px; border-radius: 8px 8px 0 0; }
+        .header-block h2 { color: white; font-size: 2em; margin: 0 0 10px 0; }
+        .header-block h3 { color: white; font-size: 1.5em; margin: 0; font-weight: normal; }
+
+        .balance { font-size: 1.5em; font-weight: bold; color: yellow; display: inline-block; padding: 2px 5px; }
+        
+        /* Styling the claim block similar to the image */
+        .claim-block { background-color: #d33; padding: 15px; margin: 20px -20px -20px -20px; border-radius: 0 0 8px 8px; }
+        .claim-block h2 { color: white; font-size: 1.5em; margin: 0 0 15px 0; }
+        
+        input[type="text"] { width: 170px; padding: 5px; border: 1px solid #ccc; border-radius: 2px; box-sizing: border-box; }
+        
+        /* Style for the CLAIM button */
+        button { background-color: #fff; color: black; padding: 5px 10px; border: 1px solid #ccc; border-radius: 2px; cursor: pointer; font-size: 0.9em; font-weight: bold; }
+
+        .error { color: #800; background-color: #fee; padding: 10px; border: 1px solid #800; border-radius: 4px; margin-bottom: 15px; font-weight: bold; }
+        .coupon-field { display: flex; justify-content: center; align-items: center; margin-bottom: 15px; }
+        .coupon-field label { color: white; font-weight: bold; margin-right: 10px; }
+        .logout-link { margin-top: 15px; display: block; color: #d33; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="header-block">
+            <h2>Your Current Balance is: <span class="balance" th:text="${#numbers.formatDecimal(balance, 0, 'COMMA', 2, 'POINT')}">20000.00</span></h2>
+        </div>
+        
+        <div class="claim-block">
+            <h2>Claim your Cash Back here</h2>
+            
+            <div th:if="${error}" class="error" th:text="${error}"></div>
+            
+            <form method="POST" action="/claim-offer">
+                <div class="coupon-field">
+                    <label for="couponCode">Enter Coupon Code:</label>
+                    <input type="text" id="couponCode" name="couponCode" th:value="${param.couponCode}" required />
+                    <button type="submit" style="margin-left: 10px;">CLAIM</button>
+                </div>
+            </form>
+        </div>
+        
+        <a href="/" class="logout-link">Logout</a>
+    </div>
+</body>
+</html>
