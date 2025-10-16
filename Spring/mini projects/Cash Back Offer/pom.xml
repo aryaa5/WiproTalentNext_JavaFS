@@ -1,0 +1,17 @@
+# application.properties
+# H2 Database
+spring.datasource.url=jdbc:h2:mem:legiondb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=password
+
+# H2 Console (Access at http://localhost:8080/h2-console)
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+
+# JPA/Hibernate
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+# Data Initialization (Loads data.sql)
+spring.sql.init.mode=always
