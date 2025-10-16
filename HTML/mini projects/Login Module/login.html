@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            background-color: white;
+            font-family: Arial, sans-serif;
+            text-align: center; /* Center the table block on the page */
+        }
+        .login-box {
+            /* Styling the main login content box/title */
+            margin: 20px auto;
+            width: 350px;
+        }
+        .account-login-title {
+            /* Styling for "Account Login" text */
+            background-color: #4682B4; /* Steel Blue to match the image */
+            color: white;
+            padding: 5px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        table {
+            /* Styling for the table holding the fields */
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #B0E0E6; /* Powder Blue to match the image */
+            padding: 10px;
+        }
+        td {
+            padding: 10px;
+            text-align: right;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="password"] {
+            /* Styling for input fields */
+            padding: 5px;
+            border: 2px solid #000080; /* Navy Blue border */
+            width: 150px;
+        }
+        input[type="submit"] {
+            /* Styling for the Login button */
+            background-color: #4682B4; 
+            color: white;
+            padding: 5px 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .center-cell {
+            text-align: center !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <div class="account-login-title">Account Login</div>
+        <table border="0">
+            <tr>
+                <td>User Name:</td>
+                <td>
+                    <input type="text" maxlength="8">
+                </td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td>
+                    <input type="password" maxlength="8"> 
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="center-cell"> 
+                    <input type="submit" value="Login">
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
