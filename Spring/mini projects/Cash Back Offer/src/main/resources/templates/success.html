@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Legion Bank - Congratulations</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        /* Style matching the provided image (Red background) */
+        .container { background-color: #f99; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 400px; text-align: center; }
+        
+        /* Styling the header block similar to the image */
+        .header-block { background-color: #d33; padding: 15px; margin: -30px -30px 20px -30px; border-radius: 8px 8px 0 0; }
+        .header-block h1 { color: white; font-size: 2em; margin: 0; }
+
+        /* Styling the congratulations message */
+        .message-block { background-color: #d33; padding: 20px; border-radius: 4px; margin-bottom: 20px; }
+        .message-block h2 { color: white; font-size: 1.5em; margin: 0; font-weight: normal; }
+        .percentage { font-weight: bold; color: yellow; }
+        
+        .balance-label { color: black; font-size: 1.5em; margin-bottom: 10px; }
+        /* Styling the final balance */
+        .balance { font-size: 3em; font-weight: bold; color: #333; margin-top: 10px; display: block; }
+        
+        .cashback-detail { margin-bottom: 20px; font-size: 1.1em; color: black; }
+        .logout-link { margin-top: 20px; display: block; color: #d33; font-size: 1em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-block">
+            <h1>Congratulations</h1>
+        </div>
+        
+        <div class="message-block">
+            <h2>You received a <span class="percentage" th:text="${percentage}">10</span>% cash back offer</h2>
+        </div>
+        
+        <div class="cashback-detail">
+            Cash back added: $<span th:text="${#numbers.formatDecimal(cashBackAmount, 0, 'COMMA', 2, 'POINT')}" style="font-weight: bold; color: green;">2000.00</span>
+        </div>
+        
+        <span class="balance-label">Your updated new balance is:</span>
+        <span class="balance" th:text="${#numbers.formatDecimal(newBalance, 0, 'COMMA', 2, 'POINT')}">22000.00</span>
+        
+        <a href="/" class="logout-link">Click here to Logout</a>
+    </div>
+</body>
+</html>
