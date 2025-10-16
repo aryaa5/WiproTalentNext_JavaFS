@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Sign Up Module</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body onload="startTimer()">
+    <div class="header-info">
+        <span id="datetime"></span>
+    </div>
+
+    <div class="form-container">
+        <h1>User Sign Up Module</h1>
+        
+        <form name="registrationForm" onsubmit="return validateForm()">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required><br>
+            <span id="errorFirstName" class="error-message"></span><br>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required><br>
+            <span id="errorLastName" class="error-message"></span><br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br>
+            <span id="errorPassword" class="error-message"></span><br>
+
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required><br>
+            <span id="errorConfirmPassword" class="error-message"></span><br>
+
+            <label>Gender:</label>
+            <div class="radio-group">
+                <input type="radio" id="male" name="gender" value="Male">
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="Female">
+                <label for="female">Female</label>
+            </div>
+            <span id="errorGender" class="error-message"></span><br>
+
+            <label for="mobileNumber">Mobile Number:</label>
+            <input type="text" id="mobileNumber" name="mobileNumber" required><br>
+            <span id="errorMobileNumber" class="error-message"></span><br>
+
+            <label for="dob">DOB (DD-MM-YYYY):</label>
+            <input type="text" id="dob" name="dob" placeholder="DD-MM-YYYY" required><br>
+            <span id="errorDob" class="error-message"></span><br>
+
+            <label for="email">Email Address:</label>
+            <input type="text" id="email" name="email" required><br>
+            <span id="errorEmail" class="error-message"></span><br>
+            
+            <label for="comments">Comments (Optional):</label>
+            <textarea id="comments" name="comments" rows="4" cols="50"></textarea><br>
+
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+    <script src="js/validation.js"></script>
+</body>
+</html>
