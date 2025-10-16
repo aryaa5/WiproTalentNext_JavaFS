@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 8px;
+        }
+        td:first-child {
+            width: 35%;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="password"], input[type="date"], input[type="tel"], select, textarea {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+            border: 1px solid #999;
+        }
+        .button-row {
+            text-align: center;
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 style="text-align: center;">Registration Form</h2>
+        
+        <form name="registrationForm" onsubmit="return validateForm()">
+            <table>
+                <tr>
+                    <td>User Id :</td>
+                    <td>
+                        <input type="text" id="userId" name="userId" 
+                               minlength="4" maxlength="8" required 
+                               placeholder="Min 4, Max 8 chars">
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Password :</td>
+                    <td>
+                        <input type="password" id="password" name="password" 
+                               minlength="6" required 
+                               placeholder="Min 6, 1 Upper, 1 Number">
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Date Of birth :</td>
+                    <td>
+                        <input type="date" id="dob" name="dob" 
+                               max="<%= new Date().toISOString().split('T')[0] %>" required>
+                        <small> (mm/dd/yyyy)</small>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Gender :</td>
+                    <td>
+                        <input type="radio" id="male" name="gender" value="Male" required>
+                        <label for="male">Male</label>
+                        <input type="radio" id="female" name="gender" value="Female">
+                        <label for="female">Female</label>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>State :</td>
+                    <td>
+                        <select id="state" name="state" required>
+                            <option value="">-- Select State --</option>
+                            <option value="Karnataka" selected>Karnataka</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="TamilNadu">Tamil Nadu</option>
+                        </select>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Contact number:</td>
+                    <td>
+                        <input type="tel" id="contact" name="contact" 
+                               pattern="\d{10}" maxlength="10" required 
+                               placeholder="Exactly 10 digits">
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Address:</td>
+                    <td>
+                        <textarea id="address" name="address" rows="3" required></textarea>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="button-row">
+                <input type="submit" value="submit">
+                <input type="reset" value="reset">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Set the max date for DOB to today for client-side enforcement
+        document.getElementById('dob').setAttribute('max', new Date().toISOString().split('T')[0]);
+
+        function validateForm() {
+            const password = document.getElementById('password').value;
+            
+            // Password Validation: Must contain at least one number and one upper case.
+            const hasNumber = /\d/.test(password);
+            const hasUpperCase = /[A-Z]/.test(password);
+            
+            if (!hasNumber) {
+                alert("Password must contain at least one number.");
+                return false;
+            }
+            if (!hasUpperCase) {
+                alert("Password must contain at least one uppercase letter.");
+                return false;
+            }
+            
+            // Other validations (minlength, required, pattern) are handled by HTML5.
+            
+            // The DOB validation (less than today's date) is handled by the 'max' attribute set above.
+            
+            alert("Registration data is valid and submitted."); // Replace with actual submission logic
+            return true; 
+        }
+    </script>
+</body>
+</html>
