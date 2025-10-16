@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login Module</title>
+<style>
+    .error { color: red; }
+</style>
+</head>
+<body>
+    <h2>Login to the Application</h2>
+
+    <%-- Display error message if present --%>
+    <% 
+        String message = (String) request.getAttribute("message");
+        if (message != null) { 
+    %>
+        <p class="error"><%= message %></p>
+    <% 
+        } 
+    %>
+
+    <form action="LoginServlet" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <input type="submit" value="Login">
+    </form>
+
+    <hr>
+
+    <p><a href="register.jsp">New User</a></p>
+    <p><a href="changePassword.jsp">Change Password</a></p>
+
+</body>
+</html>
